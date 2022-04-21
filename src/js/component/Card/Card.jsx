@@ -1,11 +1,11 @@
 import React from "react";
 import Proptypes from "prop-types";
 import { Link } from "react-router-dom";
-import "../../styles/card.css";
+import "./card.css";
 
 export const Card = (props) => {
     return(
-        <div className="card" style="width: 18rem;">
+        <div className="card card-sw">
             <img src="..." className="card-img-top" alt="..." />
             <div className="card-body">
                 <h5 className="card-title">{props.name}</h5>
