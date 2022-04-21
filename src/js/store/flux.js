@@ -1,43 +1,82 @@
-const getState = ({ getStore, getActions, setStore }) => {
+import { getPeople, getVehicles, getPlanets, getInformation} from "../service/starWars.js";
+
+const getState = ({ getStore, setStore }) => {
 	return {
 		store: {
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			]
+			characters: [],
+			planets: [],
+			vehicles: [],
+			favourites: [],
+			info: [],
+			
 		},
 		actions: {
-			// Use getActions to call a function within a fuction
-			exampleFunction: () => {
-				getActions().changeColor(0, "green");
-			},
-			loadSomeData: () => {
-				/**
-					fetch().then().then(data => setStore({ "foo": data.bar }))
-				*/
-			},
-			changeColor: (index, color) => {
-				//get the store
+			getPeople: () => {
 				const store = getStore();
-
-				//we have to loop the entire demo array to look for the respective index
-				//and change its color
-				const demo = store.demo.map((elm, i) => {
-					if (i === index) elm.background = color;
-					return elm;
+				if (store.characters.length === 0) {
+					getPeople()
+						.then(response => {
+							return response.json();
+						})
+						.then(json => {
+							setStore({ characters: json.results });
+						})
+						.catch((err) => {
+							console.log(err);
+						});
+				}
+			},
+			
+			getPlanet: () => { 
+				const store = getStore();
+				if (store.planets.length === 0) {
+					getPlanets()
+						.then(res => {
+							return res.json();
+						})
+						.then(json => {
+							setStore({ planets: json.results });
+						})
+						.catch((err) => {
+							console.log(err);
+						});
+				}
+			},
+			getVehicle: () => { 
+				const store = getStore();
+				if (store.vehicles.length === 0) {
+					getVehicles()
+						.then(res => {
+							return res.json();
+						})
+						.then(json => {
+							setStore({ vehicles: json.results });
+						})
+						.catch((err) => {
+							console.log(err);
+						});
+				}
+			},
+			
+			getInfo: (type, id) => {
+				const store = getStore();
+				console.log(type, id);
+				getInformation(type, id)
+				
+				.then(res => {
+					return res.json();
+				})
+				.then(data => {
+					const {result}=data;
+					console.log(data)
+					setStore({ info: result.properties });
+					console.log(store)
+				})
+				.catch((err) => {
+					console.log(err);
 				});
-
-				//reset the global store
-				setStore({ demo: demo });
-			}
+			
+			},
 		}
 	};
 };
