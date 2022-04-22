@@ -1,24 +1,28 @@
-import { getPeople, getVehicles, getPlanets, getInformation} from "../service/starWars.js";
-
-const getState = ({ getStore, setStore }) => {
+const getState = ({ getStore, setStore, getActions }) => {
 	return {
 		store: {
 			people: [],
 			planets: [],
 			vehicles: [],
-			favourites: [],
-			info: [],
+			// favourites: [],
+			// info: [],
 			
 		},
 		actions: {
-			setPeople: (peopleList) => {
-				setStore({people: peopleList})
+				setPeople: (peopleList) => {
+					setStore({people: peopleList})
+				},
+
+				setPlanets: (planetsList) => {
+					setStore({planets: planetsList})
+				},
+
+				setVehicles: (vehiclesList) => {
+					setStore({vehicles: vehiclesList})
 				}
 			},
 			
-			setPlanets: (planetsList) => {
-				setStore({planets: planetsList})
-			}
+			
 		
 	};
 };
