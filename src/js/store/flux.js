@@ -1,30 +1,45 @@
+import {getList, getInformation} from "../service/starWars.js"
+
+
+
 const getState = ({ getStore, setStore, getActions }) => {
 	return {
 		store: {
 			people: [],
 			planets: [],
-			vehicles: [],
-			// favourites: [],
-			// info: [],
+			starships: [],
+			favourites: [],
+			details: {},
 			
 		},
 		actions: {
-				setPeople: (peopleList) => {
-					setStore({people: peopleList})
-				},
-
-				setPlanets: (planetsList) => {
-					setStore({planets: planetsList})
-				},
-
-				setVehicles: (vehiclesList) => {
-					setStore({vehicles: vehiclesList})
-				}
+			getList: (type) =>{
+				const store = getStore();
+				getList(type)
+					.then(res => res.json())
+					.then(data => {
+						const {results}=data;
+						setStore({...store, [type]: results });
+					})
+					.catch(err => console.error(err));
 			},
+
+			getItemDetails: (type, uid) => {
+				const store = getStore();
+				getInformation(type, uid)
+					.then(res => res.json())
+					.then(data =>{
+						const {result} = data;
+						setStore({...store, details: result.properties})
+					})
+					.catch(err => console.error(err));
+			},
+				
+		},
 			
 			
 		
-	};
+	}
 };
 
 export default getState;

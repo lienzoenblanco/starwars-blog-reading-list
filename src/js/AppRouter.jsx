@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop.jsx";
 
 import { Home } from "./views/Home/home.jsx";
+import { Details } from "./views/Details/Details.jsx";
 import injectContext from "./store/appContext";
 
 import { Layout } from "./layout/Layout.jsx"
@@ -21,6 +22,10 @@ const AppRouter = () => {
 						<Switch>
 							<Route exact path="/">
 								<Home />
+							</Route>
+							<Route exact path="/details/:type/:uid" children={
+								<Details />
+							}>
 							</Route>
 							<Route>
 								<h1>Not found!</h1>

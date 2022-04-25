@@ -10,13 +10,17 @@ export const getPlanets = () => {
 	return fetch(url);
 };
 
-export const getVehicles = () => {
-	const url = URL + "/vehicles"
+export const getstarships = () => {
+	const url = URL + "/starships"
 	return fetch(url);
 };
 
-export const getInformation = (type, id) => {
-	const url = URL + `/${type}/${id}`
-	console.log(url);
+export const getList = (type) => {
+	const url = `${URL}/${type}`
+	return fetch(url);
+};
+
+export const getInformation = (type, uid) => {
+	const url = URL + `/${type}/${uid}`
 	return fetch(url)
 };
