@@ -34,6 +34,17 @@ const getState = ({ getStore, setStore, getActions }) => {
 					})
 					.catch(err => console.error(err));
 			},
+
+			addFavorites: (name) =>{
+				const store=getStore();
+				setStore({...store,favourites:[...store.favourites, name]});
+			},
+
+			deleteFaorites: (name) => {
+				const store = getStore();
+					setStore({...store, favourites:[store.favourites.filter((item) => item != name)]})
+				
+			}
 				
 		},
 			

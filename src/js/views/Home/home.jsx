@@ -23,19 +23,19 @@ export const Home = () => {
 	return (
 		<div className="container-fluid">
 			<div className="row justify-content-center">
-				<h3 className="sec-Title my-3 text-warning text-center">Characters</h3>
+				<h2 className="sec-Title my-3 text-warning text-center">Characters</h2>
 				<div className="sec-cards row justify-content-center">
 					{store.people.map((people) => <Card name={people.name} key={people.uid} uid={people.uid} type="people"/>)}
 				</div>		
 			</div>
 			<div className="row justify-content-center">
-				<h3 className="sec-Title my-3 text-warning text-center">Planents</h3>
+				<h2 className="sec-Title my-3 text-warning text-center">Planents</h2>
 				<div className="sec-cards row justify-content-center">
 					{store.planets.map((planet) => <Card name={planet.name} key={planet.uid} uid={planet.uid} type="planets"/>)}
 				</div>
 			</div>
 			<div className="row justify-content-center">
-				<h3 className="sec-Title my-3 text-warning text-center">starships</h3>
+				<h2 className="sec-Title my-3 text-warning text-center">Starships</h2>
 				<div className="sec-cards row justify-content-center">
 					{store.starships.map((starship) => <Card name={starship.name} key={starship.uid} uid={starship.uid} type="starships"/>)}
 				</div>
